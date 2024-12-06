@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RetailWay.Integration.OfdRu
+namespace RetailWay.Integration.OfdRu.DataModels
 {
     public struct Response<T>
     {

@@ -94,6 +94,7 @@ namespace RetailWay.Integration.OfdRu.DataModels
             public string CustomDeclarationNumber { get; set; }
             public int ProductCheckResultDetails { get; set; }
             public int ProductUnitOfMeasure { get; set; }
+            public Codes ProductCode { get; set; } // todo ???
         }
 
         public struct CorrectionData

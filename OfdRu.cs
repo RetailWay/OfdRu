@@ -23,7 +23,7 @@ namespace RetailWay.Integration.OfdRu
                 BaseAddress = new Uri("https://ofd.ru/api/integration/v2/"),
                 Timeout = TimeSpan.FromSeconds(3),
                 DefaultRequestHeaders = { 
-                    { "Content-Type", "application/json; charset=utf-8" } 
+                    { "accept", "application/json" } 
                 }
             };
             _optionsSerializer = new JsonSerializerSettings
@@ -34,7 +34,7 @@ namespace RetailWay.Integration.OfdRu
 
         public async Task<T> SendAsync<T>(string address, string body = null)
         {
-            address += $"{(string.IsNullOrEmpty(new Uri(address).Query) ? "?" : "&")}AuthToken={_token}";
+            address += $"{(address.Contains("?")?"&":"?")}AuthToken={_token}";
             var req = new HttpRequestMessage(body is null ? HttpMethod.Get : HttpMethod.Post, address);
             if (!(body is null))
                 req.Content = new StringContent(body);
@@ -48,15 +48,27 @@ namespace RetailWay.Integration.OfdRu
         }
 
         public async Task<DeviceInfo> GetDeviceInfo(DeviceInfoArgs args) => 
-            await SendAsync<DeviceInfo>(args.Address);
+            (await SendAsync<DeviceInfo[]>(args.Address))[0];
 
         public async Task<Report[]> GetReports(ReportsArgs args) =>
             await SendAsync<Report[]>(args.Address);
 
+        // todo GetRegistrationReceipts
+
         public async Task<Receipt[]> GetReceipts(ReceiptsArgs args) =>
             await SendAsync<Receipt[]>(args.Address);
 
-        public async Task<ReceiptDetail> GetReceiptDetail(ReceiptsArgs args) =>
+        public async Task<ReceiptDetail> GetReceiptDetail(ReceiptDetailArgs args) =>
             await SendAsync<ReceiptDetail>(args.Address);
+
+        public async Task<AdvancedReceipt[]> GetAdvancedReceipts(AdvancedReceiptsArgs args) =>
+            await SendAsync<AdvancedReceipt[]>(args.Address);
+
+        public async Task<MarkReceipt[]> GetMarkReceipts(MarkReceiptsArgs args) =>
+            await SendAsync<MarkReceipt[]>(args.Address);
+
+        // todo GetTlvReceipts
+
+
     }
 }

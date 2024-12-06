@@ -3,6 +3,15 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>RetailWay.Integration.OfdRu</RootNamespace>
+        <Version>0.0.2</Version>
+        <AssemblyVersion>0.0.2</AssemblyVersion>
+        <FileVersion>0.0.2</FileVersion>
+	<Authors>OrnarasUS</Authors>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<Title>RetailWay.Integration.OfdRu</Title>
+        <Description>Wrapper implementing the API OfdRu</Description>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/RetailWay/OfdRu/refs/heads/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/RetailWay/OfdRu</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>

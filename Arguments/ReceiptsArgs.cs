@@ -12,8 +12,8 @@ namespace RetailWay.Integration.OfdRu.Arguments
         {
             PeriodOverflowException.ThrowIfGreatThanMonth(begin, end);
 
-            var builder = new StringBuilder($"inn/{vatin}/kkt/{reg}/receipts?");
-            builder.InsertPeriod(begin, end, '\0');
+            var builder = new StringBuilder($"inn/{vatin}/kkt/{reg}/receipts");
+            builder.InsertPeriod(begin, end, '?');
             Address = builder.ToString();
         }
 
